@@ -8,6 +8,7 @@ import { home } from './controllers/home.js';
 import { SOURCE_PATH } from './consts.js';
 import HandlebarsHelpers from './lib/HandlebarsHelpers.js';
 import entities from './models/index.js';
+import { getUser, getUserById } from './controllers/api/user.js';
 
 const app = express();
 app.use(express.static('public'));
@@ -29,6 +30,10 @@ app.set('views', path.join(SOURCE_PATH, 'views'));
 // App Routing
 
 app.get('/', home);
+
+app.get('/api/user', getUser);
+app.get('/api/user/:id', getUserById);
+// app.post('/api/user', postUser);
 
 createConnection({
   type: process.env.DATABASE_TYPE,
