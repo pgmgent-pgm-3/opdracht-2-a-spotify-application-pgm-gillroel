@@ -13,6 +13,27 @@ export const getSong = async (req, res, next) => {
   }
 };
 
+export const getSongById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    // kijken of er een id is meegegeven
+    if (!id) throw new Error('please specify a id to remove');
+
+    // get song repo
+    const songRepository = getConnection().getRepository('Song');
+
+    res.status(200).json(
+      await songRepository.findOne({
+        where: { id },
+        relations: ['albums', 'playlists'],
+      })
+    );
+  } catch (e) {
+    next(e.message);
+  }
+};
+
 export const postSong = async (req, res, next) => {
   try {
     // validate incoming body

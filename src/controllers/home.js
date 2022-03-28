@@ -1,4 +1,6 @@
-export const home = (req, res) => {
+import { getConnection } from 'typeorm';
+
+export const home = async (req, res) => {
   const playList = [
     {
       name: 'party',
@@ -8,24 +10,7 @@ export const home = (req, res) => {
     },
   ];
 
-  const task = [
-    {
-      task: 'Working for programming 3',
-    },
-    {
-      task: 'Chatting with other students',
-    },
-  ];
-
-  const taskDone = [
-    {
-      task: 'Doing some homework',
-    },
-  ];
-
   res.render('home', {
     playList,
-    task,
-    taskDone,
   });
 };
