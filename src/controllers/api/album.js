@@ -5,9 +5,7 @@ export const getAlbum = async (req, res, next) => {
     // get album repo
     const albumRepository = getConnection().getRepository('Album');
 
-    res
-      .status(200)
-      .json(await albumRepository.find({ relations: ['artist_id'] }));
+    res.status(200).json(await albumRepository.find({ relations: ['artist'] }));
   } catch (e) {
     next(e.message);
   }
@@ -26,7 +24,7 @@ export const getAlbumById = async (req, res, next) => {
     res.status(200).json(
       await albumRepository.findOne({
         where: { id },
-        relations: ['artist_id'],
+        relations: ['artist'],
       })
     );
   } catch (e) {

@@ -19,18 +19,16 @@ export default new EntitySchema({
     },
   },
   relations: {
-    user_meta_id: {
+    userMeta: {
       target: 'UserMeta',
       type: 'one-to-one',
       cascade: true,
       joinColumn: true,
     },
-    role_id: {
+    role: {
       target: 'Role',
       type: 'many-to-one',
-      joinColumn: {
-        name: 'role_id',
-      },
+      joinColumn: true,
       inverseSide: 'user',
     },
   },

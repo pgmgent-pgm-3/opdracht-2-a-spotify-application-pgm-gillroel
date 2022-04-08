@@ -1,8 +1,22 @@
     <header>
             <div class="header_left">
-                <a href="http://localhost:8080/"><img src="/img/Spotify_Logo_CMYK_Green.png" alt="logo"></a>
-                
-                    
+                    <a href="http://localhost:8080/"><img src="/img/Spotify_Logo_CMYK_Green.png" alt="logo"></a>
             </div>
-             <a href="#" class="header_right">Logout</a>
+
+{{#with user.userMeta}}
+  <h1>{{firstname}} {{lastname}}</h1>
+  {{/with}}
+
+
+{{#ifEquals user.role.name "Reader"}}
+    Your a Reader
+{{/ifEquals}}
+
+{{#ifEquals user.role_id.name "Admin"}}
+    Your an Admin
+{{/ifEquals}}
+
+            <form method="post" action="/logout">
+                    <button type="submit" class="logout">Logout</button>
+            </form>
     </header>

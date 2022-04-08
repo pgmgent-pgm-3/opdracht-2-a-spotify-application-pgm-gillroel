@@ -5,14 +5,15 @@
     {{#each inputs}}
     {{>form-input this}}
     {{/each}}
-    <div class="footer-container">
-      <select name="role" id="role">
+    {{>upload-file}}
+          <select name="role" id="role">
         {{#each role }}
-        <option value="{{name}}">{{name}}</option>
+        <option value="{{id}}">{{name}}</option>
         {{/each}}
-
+    <div class="footer-container">
         <input type="reset" class="btn btn-tertiary" value="Clear">
         <input type="submit" class="btn btn-primary" value="Register">
     </div>
+    
   </form>
 </section>

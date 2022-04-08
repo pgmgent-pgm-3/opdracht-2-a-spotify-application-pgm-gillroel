@@ -7,7 +7,7 @@ export const getPlaylist = async (req, res, next) => {
 
     res
       .status(200)
-      .json(await playlistRepository.find({ relations: ['user_id', 'songs'] }));
+      .json(await playlistRepository.find({ relations: ['user', 'songs'] }));
   } catch (e) {
     next(e.message);
   }
@@ -26,7 +26,7 @@ export const getPlaylistById = async (req, res, next) => {
     res.status(200).json(
       await playlistRepository.findOne({
         where: { id },
-        relations: ['user_id', 'songs'],
+        relations: ['user', 'songs'],
       })
     );
   } catch (e) {

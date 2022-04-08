@@ -1,5 +1,3 @@
-import { getConnection } from 'typeorm';
-
 export const home = async (req, res) => {
   const playList = [
     {
@@ -10,7 +8,11 @@ export const home = async (req, res) => {
     },
   ];
 
+  console.log(req.user);
+  
+
   res.render('home', {
     playList,
+    user: req.user,
   });
 };

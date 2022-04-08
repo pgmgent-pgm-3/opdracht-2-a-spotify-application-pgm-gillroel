@@ -16,7 +16,7 @@ export default new EntitySchema({
     },
   },
   relations: {
-    artist_id: {
+    artist: {
       target: 'Artist',
       type: 'one-to-one',
       cascade: true,
