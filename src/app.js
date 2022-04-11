@@ -26,6 +26,32 @@ import { saveAvatar } from './middelware/saveAvatar.js';
 import { jwtAuth } from './middelware/jwtAuth.js';
 
 import swaggerDefinition from './docs/swagger.js';
+import {
+  deleteSong,
+  getSong,
+  getSongById,
+  postSong,
+  updateSong,
+} from './controllers/api/song.js';
+import {
+  deleteAlbum,
+  getAlbum,
+  getAlbumById,
+  postAlbum,
+} from './controllers/api/album.js';
+import {
+  deleteArtist,
+  getArtist,
+  getArtistById,
+  postArtist,
+  updateArtist,
+} from './controllers/api/artist.js';
+import {
+  deletePlaylist,
+  getPlaylist,
+  postPlaylist,
+  updatePlaylist,
+} from './controllers/api/playlist.js';
 
 const app = express();
 app.use(express.static('public'));
@@ -68,8 +94,32 @@ app.get('/api/user/:id', getUserById);
 app.post('/api/user', postUser);
 // app.post('/api/user', postUser);
 
-app.get('/api/role', getRole);
+app.get('/api/roles', getRole);
 app.post('/api/role', postRole);
+
+app.get('/api/songs', getSong);
+app.get('/api/song/:id', getSongById);
+app.post('/api/song', postSong);
+app.put('/api/song', updateSong);
+app.delete('/api/song/:id', deleteSong);
+
+app.get('/api/albums', getAlbum);
+app.get('/api/album/:id', getAlbumById);
+app.post('/api/album', postAlbum);
+app.put('/api/album', updateSong);
+app.delete('/api/album/:id', deleteAlbum);
+
+app.get('/api/artists', getArtist);
+app.get('/api/artist/:id', getArtistById);
+app.post('/api/artist', postArtist);
+app.put('/api/artist', updateArtist);
+app.delete('/api/artist/:id', deleteArtist);
+
+app.get('/api/playlist', getPlaylist);
+app.get('/api/playlists/:id', getPlaylist);
+app.post('/api/playlist', postPlaylist);
+app.put('/api/playlists', updatePlaylist);
+app.delete('/api/playlists/:id', deletePlaylist);
 
 // adding swagger documentation
 app.use(

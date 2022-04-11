@@ -15,6 +15,8 @@ export const getUser = async (req, res, next) => {
 export const getUserById = async (req, res, next) => {
   try {
     const { id } = req.params;
+    console.log(id);
+    console.log(req.params);
 
     // kijken of er een id is meegegeven
     if (!id) throw new Error('please specify a id to remove');
@@ -35,34 +37,23 @@ export const getUserById = async (req, res, next) => {
 
 export const postUser = async (req, res, next) => {
   try {
-    if (!req.body.email) throw new Error('please provide a name for user');
+    if (!req.body.email) throw new Error('please provide a email for user');
 
     const userRepository = getConnection().getRepository('User');
 
+    console.log(req.body.email);
     const user = await userRepository.findOne({
       where: { email: req.body.email },
     });
+    console.log(user);
 
     if (user) {
       res.status(200).json({ status: `Posted user with id: ${user.id}` });
       return;
     }
+    console.log(req.body);
 
-    // hash te password
-    const hashedPassword = bcrypt.hashSync(req.body.password, 12);
-    const insertedUser = await userRepository.save({
-      email: req.body.email,
-      password: hashedPassword,
-      userMeta: {
-        firstname: req.body.firstName,
-        lastname: req.body.lastName,
-        username: req.body.username,
-        avatar: req.body.avatar,
-      },
-      role: {
-        id: req.body.role,
-      },
-    });
+    const insertedUser = await userRepository.save(req.body);
 
     res.status(200).json({ status: `Posted user with id: ${insertedUser.id}` });
   } catch (e) {

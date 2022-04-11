@@ -126,8 +126,6 @@ export const postRegister = async (req, res, next) => {
       return next();
     }
 
-
-
     // hash te password
     const hashedPassword = bcrypt.hashSync(req.body.password, 12);
     await userRepository.save({

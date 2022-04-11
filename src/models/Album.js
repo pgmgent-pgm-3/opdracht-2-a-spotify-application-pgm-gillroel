@@ -19,10 +19,8 @@ export default new EntitySchema({
     artist: {
       target: 'Artist',
       type: 'many-to-one',
-      joinColumn: {
-        name: 'artist_id',
-      },
-      inverseSide: 'albums',
+      joinColumn: true,
+      inverseSide: 'artist',
     },
   },
 });

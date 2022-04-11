@@ -1,10 +1,26 @@
 import userResponse from '../responses/user.js';
 
 export default {
-  '/user/{id}': {
+  '/api/user/{id}': {
     summary: 'Gets a existing user',
     description: 'Gets an existing users in database...',
     get: {
+      tags: ['Users'],
+      parameters: [
+        {
+          in: 'path',
+          name: ' id',
+          required: true,
+          schema: {
+            type: 'integer',
+            minium: 1,
+          },
+          description: 'The user id',
+        },
+      ],
+      responses: userResponse,
+    },
+    delete: {
       tags: ['Users'],
       parameters: [
         {
@@ -37,6 +53,20 @@ export default {
           },
         },
       },
+    },
+    put: {
+      tags: ['Users'],
+      requestBody: {
+        require: true,
+        content: {
+          'application/json': {
+            schema: {
+              $ref: '#/components/schemas/UserInput',
+            },
+          },
+        },
+      },
+      responses: userResponse,
     },
   },
   '/api/users': {

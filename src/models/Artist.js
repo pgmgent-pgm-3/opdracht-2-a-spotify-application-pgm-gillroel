@@ -20,7 +20,7 @@ export default new EntitySchema({
       target: 'Album',
       type: 'one-to-many',
       cascade: true,
-      inverseSide: 'artists',
+      inverseSide: 'artist',
     },
   },
 });

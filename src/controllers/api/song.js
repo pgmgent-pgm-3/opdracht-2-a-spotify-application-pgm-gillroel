@@ -5,9 +5,7 @@ export const getSong = async (req, res, next) => {
     // get song repo
     const songRepository = getConnection().getRepository('Song');
 
-    res
-      .status(200)
-      .json(await songRepository.find({ relations: ['albums', 'playlists'] }));
+    res.status(200).json(await songRepository.find({ relations: ['artist'] }));
   } catch (e) {
     next(e.message);
   }
@@ -26,7 +24,7 @@ export const getSongById = async (req, res, next) => {
     res.status(200).json(
       await songRepository.findOne({
         where: { id },
-        relations: ['albums', 'playlists'],
+        relations: ['artist'],
       })
     );
   } catch (e) {

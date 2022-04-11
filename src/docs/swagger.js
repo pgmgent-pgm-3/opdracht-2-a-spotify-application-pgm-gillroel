@@ -23,6 +23,26 @@ export default {
       name: 'Users',
       description: 'All the create, read, update and delete routes',
     },
+    {
+      name: 'Album',
+      description: 'All the create, read, update and delete routes',
+    },
+    {
+      name: 'Song',
+      description: 'All the create, read, update and delete routes',
+    },
+    {
+      name: 'Role',
+      description: 'All the create, read, update and delete routes',
+    },
+    {
+      name: 'Artist',
+      description: 'All the create, read, update and delete routes',
+    },
+    {
+      name: 'Playlist',
+      description: 'All the create, read, update and delete routes',
+    },
   ],
   paths: {
     ...paths,

@@ -7,7 +7,7 @@ export const getPlaylist = async (req, res, next) => {
 
     res
       .status(200)
-      .json(await playlistRepository.find({ relations: ['user', 'songs'] }));
+      .json(await playlistRepository.find({ relations: ['user'] }));
   } catch (e) {
     next(e.message);
   }
@@ -26,7 +26,7 @@ export const getPlaylistById = async (req, res, next) => {
     res.status(200).json(
       await playlistRepository.findOne({
         where: { id },
-        relations: ['user', 'songs'],
+        relations: ['user'],
       })
     );
   } catch (e) {
@@ -104,10 +104,11 @@ export const deletePlaylist = async (req, res, next) => {
     if (!id) throw new Error('please specify an id to remove');
 
     // playlist repo ophalen
-    const playlistRepository = getConnection().getRepository('Album');
+    const playlistRepository = getConnection().getRepository('Playlist');
 
     // juiste playlist zoeken
     const playlist = await playlistRepository.findOne({ id });
+
 
     // als de playlist niet bestaat een error geven
     if (!playlist) throw new Error(`The playlist with id ${id} does not exist`);

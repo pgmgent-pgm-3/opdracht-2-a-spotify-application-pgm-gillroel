@@ -22,9 +22,10 @@ export default new EntitySchema({
       cascade: true,
       joinColumn: true,
     },
-    songs: {
-      target: 'Playlist',
+    playlists: {
+      target: 'Song',
       type: 'many-to-many',
+      cascade: true,
       joinColumn: true,
     },
   },

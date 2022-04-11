@@ -13,6 +13,27 @@ export const getArtist = async (req, res, next) => {
   }
 };
 
+export const getArtistById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    // kijken of er een id is meegegeven
+    if (!id) throw new Error('please specify a id to remove');
+
+    // get album repo
+    const artistRepository = getConnection().getRepository('Artist');
+
+    res.status(200).json(
+      await artistRepository.findOne({
+        where: { id },
+        relations: ['albums'],
+      })
+    );
+  } catch (e) {
+    next(e.message);
+  }
+};
+
 export const postArtist = async (req, res, next) => {
   try {
     // validate incoming body

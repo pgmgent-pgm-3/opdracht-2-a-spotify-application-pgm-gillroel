@@ -22,11 +22,5 @@ export default new EntitySchema({
       cascade: true,
       joinColumn: true,
     },
-    playlists: {
-      target: 'Playlist',
-      type: 'many-to-many',
-      cascade: true,
-      joinColumn: true,
-    },
   },
 });
