@@ -9,7 +9,6 @@ export const home = async (req, res) => {
   ];
 
   console.log(req.user);
-  
 
   res.render('home', {
     playList,

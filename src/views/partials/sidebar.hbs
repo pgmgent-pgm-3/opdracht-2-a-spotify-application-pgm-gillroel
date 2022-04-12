@@ -1,9 +1,16 @@
 <div class="sideBar">
+    <div class="settings">
+        {{#ifEquals user.role.name "Admin"}}
+        <a href="http://localhost:3000/admin">Acounts beheren</a>
+        {{/ifEquals}}
+        <a href="http://localhost:3000/account">Acount beheren</a>
+    </div>
+
     <div class="playlist">
         <h2>Your playlists</h2>
         <div class="playlist__name">
             {{#each playList}}
-            <a href="http://localhost:8080/">{{name}}</a>
+            <a href="#">{{name}}</a>
             {{/each}}
         </div>
     </div>

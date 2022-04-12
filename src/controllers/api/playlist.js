@@ -7,7 +7,7 @@ export const getPlaylist = async (req, res, next) => {
 
     res
       .status(200)
-      .json(await playlistRepository.find({ relations: ['user'] }));
+      .json(await playlistRepository.find({ relations: ['user', 'songs'] }));
   } catch (e) {
     next(e.message);
   }
@@ -26,7 +26,7 @@ export const getPlaylistById = async (req, res, next) => {
     res.status(200).json(
       await playlistRepository.findOne({
         where: { id },
-        relations: ['user'],
+        relations: ['user', 'songs'],
       })
     );
   } catch (e) {
@@ -42,6 +42,18 @@ export const postPlaylist = async (req, res, next) => {
     // get the playlist repo
     const playlistRepository = getConnection().getRepository('Playlist');
 
+    // get the user repo
+    const userRepository = getConnection().getRepository('User');
+    const userId = await userRepository.findOne({
+      where: { id: req.body.user.id },
+    });
+    console.log(userId);
+    // get the song repo
+    const songRepository = getConnection().getRepository('Song');
+    const songId = await songRepository.findOne({
+      where: { id: req.body.songs.id },
+    });
+
     // kijken of de album nog niet bestaat
     const playlist = await playlistRepository.findOne({
       where: { name: req.body.name },
@@ -54,7 +66,11 @@ export const postPlaylist = async (req, res, next) => {
     }
 
     // album toevoegen aan de databank
-    const insertedPlaylist = await playlistRepository.save(req.body);
+    const insertedPlaylist = await playlistRepository.save({
+      ...req.body,
+      user: userId,
+      songs: songId,
+    });
 
     // boodschap terug geven
     res
@@ -108,7 +124,6 @@ export const deletePlaylist = async (req, res, next) => {
 
     // juiste playlist zoeken
     const playlist = await playlistRepository.findOne({ id });
-
 
     // als de playlist niet bestaat een error geven
     if (!playlist) throw new Error(`The playlist with id ${id} does not exist`);

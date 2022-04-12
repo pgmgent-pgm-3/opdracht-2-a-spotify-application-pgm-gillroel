@@ -1,6 +1,6 @@
     <header>
             <div class="header_left">
-                    <a href="http://localhost:8080/"><img src="/img/Spotify_Logo_CMYK_Green.png" alt="logo"></a>
+                    <a href="http://localhost:3000/"><img src="/img/Spotify_Logo_CMYK_Green.png" alt="logo"></a>
             </div>
 
 {{#with user.userMeta}}
@@ -12,7 +12,7 @@
     Your a Reader
 {{/ifEquals}}
 
-{{#ifEquals user.role_id.name "Admin"}}
+{{#ifEquals user.role.name "Admin"}}
     Your an Admin
 {{/ifEquals}}
 

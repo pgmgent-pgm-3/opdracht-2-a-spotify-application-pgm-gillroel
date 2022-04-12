@@ -22,5 +22,11 @@ export default new EntitySchema({
       cascade: true,
       inverseSide: 'artist',
     },
+    song: {
+      target: 'Song',
+      type: 'one-to-many',
+      cascade: true,
+      inverseSide: 'artist',
+    },
   },
 });

@@ -1,34 +1,90 @@
-// app.js localStorage demo
+(() => {
+  const app = {
+    initialize() {
+      this.cacheELements();
+      this.eventListener();
+    },
 
-// console.log(window.localStorage);
-// console.log(window.sessionStorage);
+    cacheELements() {
+      this.$btnDelete = document.querySelectorAll('.btnDelete--user');
+      this.$btnDeletePlaylist = document.querySelectorAll(
+        '.btnDelete--playlist'
+      );
+      this.$btnDeleteSong = document.querySelectorAll('.btnDelete--song');
+      this.$btnDeleteAlbum = document.querySelectorAll('.btnDelete--album');
+    },
 
-// // localStorage.setItem("firstname", "Gilles");
-// // localStorage.setItem("lastname", "Roels");
-// localStorage.setItem('age', 19);
+    eventListener() {
+      // function delete request
+      async function deleteRequest(value, id) {
+        await fetch(`http://localhost:3000/api/${value}/${id}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({}),
+        }).then(() => {
+          document.querySelector(`[data-id="${id}"]`).remove();
+        });
+      }
 
-// const firstname = localStorage.getItem('firstname');
-// const age = localStorage.getItem('age');
-// console.log(firstname);
-// console.log(age);
+      // delete users
+      this.$btnDelete.forEach(($button) => {
+        $button.addEventListener(
+          'click',
+          (ev) => {
+            const id =
+              ev.target.dataset.id ||
+              ev.target.parentNode.dataset.id ||
+              ev.target.parentNode.parentNode.dataset.id ||
+              ev.target.parentNode.parentNode.parentNode.dataset.id;
 
-// const person = {
-//   firstname: 'Gilles',
-//   lastname: 'Roels',
-//   adress: {
-//     street: 'stationstraat',
-//     city: 'Lochristi',
-//   },
-//   skills: ['html', 'development'],
-// };
+            deleteRequest('user', id);
+          },
+          false
+        );
+      });
 
-// localStorage.setItem('person', JSON.stringify(person));
+      // delete playlist
+      this.$btnDeletePlaylist.forEach(($button) => {
+        $button.addEventListener('click', (ev) => {
+          const id =
+            ev.target.dataset.id ||
+            ev.target.parentNode.dataset.id ||
+            ev.target.parentNode.parentNode.dataset.id ||
+            ev.target.parentNode.parentNode.parentNode.dataset.id;
 
-// let localPerson = localStorage.getItem('person');
-// localPerson = JSON.parse(localPerson);
-// console.log(localPerson);
+          deleteRequest('playlists', id);
+        });
+      });
 
-// localStorage.removeItem('age');
-// localStorage.clear();
+      // delete song
+      this.$btnDeleteSong.forEach(($button) => {
+        $button.addEventListener('click', (ev) => {
+          const id =
+            ev.target.dataset.id ||
+            ev.target.parentNode.dataset.id ||
+            ev.target.parentNode.parentNode.dataset.id ||
+            ev.target.parentNode.parentNode.parentNode.dataset.id;
 
+          deleteRequest('song', id);
+        });
+      });
 
+      // delete album
+      this.$btnDeleteAlbum.forEach(($button) => {
+        $button.addEventListener('click', (ev) => {
+          const id =
+            ev.target.dataset.id ||
+            ev.target.parentNode.dataset.id ||
+            ev.target.parentNode.parentNode.dataset.id ||
+            ev.target.parentNode.parentNode.parentNode.dataset.id;
+
+          deleteRequest('album', id);
+        });
+      });
+    },
+  };
+
+  app.initialize();
+})();

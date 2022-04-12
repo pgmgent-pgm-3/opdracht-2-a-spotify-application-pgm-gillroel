@@ -1,0 +1,11 @@
+
+
+<div class="container-account">
+        <form method="post">
+            {{#each inputs}}
+                {{>form-input this}}
+                {{/each}}
+                <input type="reset" class="btn btn-tertiary" value="Clear">
+            <input type="submit" class="btn btn-primary" value="Register">
+        </form>
+</div>

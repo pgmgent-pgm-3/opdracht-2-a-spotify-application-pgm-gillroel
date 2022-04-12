@@ -1,0 +1,68 @@
+<div class="container-right">
+    
+    <div class="container-user">
+        <h3>Users</h3>
+
+    
+        <ul>
+
+            {{#each users}}
+            
+                <li class="user-info" data-id="{{id}}">
+                <p>{{userMeta.firstname}}</p>
+                <p>{{userMeta.lastname}}</p>
+                <p>{{userMeta.username}}</p>
+                <p>{{email}}</p>
+                <p>{{role.name}}</p>
+                
+                {{#ifNotEquals email "gillesroels3@outlook.com"}}
+                <button class="btnDelete--user"><i class="fa-solid fa-trash"></i></button>
+                {{/ifNotEquals}}
+                </li>
+            
+            {{/each}}
+        </ul>
+    </div>
+    
+    <div class="container-playlist">
+        <h3>playlists</h3>
+        <ul>
+        {{#each playList}}
+        <li  class="playlist-info" data-id="{{id}}">
+        {{name}}
+        <button class="btnDelete--playlist"><i class="fa-solid fa-trash"></i></button>
+        </li>
+        
+        {{/each}}
+        </ul>
+    </div>
+    
+    <div class="container-song">
+        <h3>Song</h3>
+        <ul>
+            {{#each song}}
+
+                <li class="song-info" data-id="{{id}}">
+                    {{name}}
+                    {{artist.name}}
+                    <button class="btnDelete--song"><i class="fa-solid fa-trash"></i></button>
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+    
+    <div class="album-container">
+        <h3>Albums</h3>
+        <ul>
+            {{#each album}}
+                <li class="album-info" data-id="{{id}}">
+                    {{name}}
+                    {{artist.name}}
+                    <button class="btnDelete--album"><i class="fa-solid fa-trash"></i></button>
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+    
+</div>
+

@@ -121,6 +121,9 @@ export default {
       user: {
         id: 33,
       },
+      songs: {
+        id: 1,
+      },
     },
   },
   Song: {

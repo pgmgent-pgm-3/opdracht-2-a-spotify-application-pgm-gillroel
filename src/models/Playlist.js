@@ -18,15 +18,15 @@ export default new EntitySchema({
   relations: {
     user: {
       target: 'User',
-      type: 'one-to-one',
+      type: 'many-to-many',
       cascade: true,
-      joinColumn: true,
+      joinTable: true,
     },
-    playlists: {
+    songs: {
       target: 'Song',
       type: 'many-to-many',
       cascade: true,
-      joinColumn: true,
+      joinTable: true,
     },
   },
 });

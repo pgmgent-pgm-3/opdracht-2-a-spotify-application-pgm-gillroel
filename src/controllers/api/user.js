@@ -60,3 +60,27 @@ export const postUser = async (req, res, next) => {
     return next(e.message);
   }
 };
+
+export const deleteUser = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    if (!id) throw new Error('please specify an id to remove');
+
+    // user repo ophalen
+    const userRepository = getConnection().getRepository('User');
+
+    // juiste user zoeken
+    const user = await userRepository.findOne({ id });
+
+    // als de song niet bestaat een error geven
+    if (!user) throw new Error(`The user with id ${id} does not exist`);
+
+    // de artiest verwijderen
+    await userRepository.remove({ id });
+
+    res.status(200).json({ status: `delete user with id ${id}` });
+  } catch (e) {
+    next(e.message);
+  }
+};

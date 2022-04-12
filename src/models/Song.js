@@ -18,9 +18,9 @@ export default new EntitySchema({
   relations: {
     artist: {
       target: 'Artist',
-      type: 'one-to-one',
-      cascade: true,
+      type: 'many-to-one',
       joinColumn: true,
+      inverseSide: 'song',
     },
   },
 });
