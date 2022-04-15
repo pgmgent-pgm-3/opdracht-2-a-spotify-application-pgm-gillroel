@@ -1,11 +1,33 @@
-
-
-<div class="container-account">
-        <form method="post">
-            {{#each inputs}}
-                {{>form-input this}}
-                {{/each}}
-                <input type="reset" class="btn btn-tertiary" value="Clear">
-            <input type="submit" class="btn btn-primary" value="Register">
-        </form>
+<div class="data-currentUser">
+    
+    <h1>Your account</h1>
+    
+    <div class="data-user">
+        <div class="info-currentUser">
+            <h3>firstname:</h3>
+            <p>{{currentUser.userMeta.firstname}}</p>
+            <button class="change-firstname" data-id="{{currentUser.id}}"><i class="fa-solid fa-pen-to-square"></i></button>
+        </div>
+            <div class="info-currentUser">
+            <h3>lastname:</h3>
+            <p>{{currentUser.userMeta.lastname}}</p>
+            <button class="change-lastname" data-id="{{currentUser.id}}"><i class="fa-solid fa-pen-to-square"></i></button>
+        </div>
+            <div class="info-currentUser">
+            <h3>username:</h3>
+            <p>{{currentUser.userMeta.username}}</p>
+            <button class="change-username" data-id="{{currentUser.id}}"><i class="fa-solid fa-pen-to-square"></i></button>
+        </div>
+            <div class="info-currentUser">
+            <h3>email:</h3>
+            <p>{{currentUser.email}}</p>
+            <button class="change-email" data-id="{{currentUser.id}}"><i class="fa-solid fa-pen-to-square"></i></button>
+        </div>
+            <div class="info-currentUser">
+            <h3>password:</h3>
+            <p>**********</p>
+            <button class="change-password" data-id="{{currentUser.id}}"><i class="fa-solid fa-pen-to-square"></i></button>
+        </div>
+    </div>
 </div>
+

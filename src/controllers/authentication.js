@@ -144,6 +144,7 @@ export const postRegister = async (req, res, next) => {
 
     // go to login page
     res.redirect('/login');
+    // next();
   } catch (e) {
     return next(e.message);
   }

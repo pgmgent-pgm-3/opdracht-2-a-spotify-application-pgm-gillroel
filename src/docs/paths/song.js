@@ -51,7 +51,7 @@ export default {
       parameters: [
         {
           in: 'path',
-          name: ' id',
+          name: 'id',
           required: true,
           schema: {
             type: 'integer',

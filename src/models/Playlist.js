@@ -16,17 +16,12 @@ export default new EntitySchema({
     },
   },
   relations: {
-    user: {
-      target: 'User',
-      type: 'many-to-many',
-      cascade: true,
-      joinTable: true,
-    },
     songs: {
       target: 'Song',
       type: 'many-to-many',
       cascade: true,
       joinTable: true,
     },
+    user: { target: 'User', type: 'many-to-many', joinTable: true },
   },
 });

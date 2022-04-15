@@ -26,7 +26,7 @@ export const getArtistById = async (req, res, next) => {
     res.status(200).json(
       await artistRepository.findOne({
         where: { id },
-        relations: ['albums'],
+        relations: ['albums', 'song'],
       })
     );
   } catch (e) {

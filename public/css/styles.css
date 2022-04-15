@@ -6,12 +6,21 @@
 
 h1 {
     color: #fff;
+    font-size: 2rem;
 }
 
 h2 {
     padding: 1rem 0rem;
 }
 
+h3 {
+    font-size: 1.5rem;
+    margin: 1rem 0rem 0.5rem 0rem;
+}
+
+li {
+    margin: 0.5rem 0rem;
+}
 
 
 a {
@@ -22,7 +31,7 @@ a {
 body {
     background-color: #000000e3;
     color: #fff;
-} 
+}
 
 .lay_out {
     width: 100%;
@@ -44,7 +53,7 @@ header {
     align-items: center;
     justify-content: space-between;
     height: 4rem;
-    
+
 }
 
 header {
@@ -73,13 +82,109 @@ header {
     width: 100%;
 }
 
+.data-currentUser {
+    margin: 0 auto;
+}
+
 .user-container {
     width: 70%;
 }
+
 .user-info {
     display: flex;
     gap: 1rem;
     width: 100%;
 }
 
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem 0rem 1rem 0rem;
+}
 
+.input-container input {
+    width: 70%;
+    margin-top: 0.3rem;
+}
+
+.container-right {
+    margin: 0 auto;
+}
+
+.info-container {
+    margin-bottom: 4rem;
+}
+
+.info {
+    margin: 0.5rem 0rem 1rem 0rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+}
+
+.info button {
+    background-color: rgb(234, 49, 49);
+    width: 1.5rem;
+    height: 1.5rem;
+    border: none;
+}
+
+.info-currentUser {
+    display: flex;
+    margin-bottom: 1rem;
+    align-items: baseline;
+    gap: 1em;
+}
+
+.auth-container {
+    box-sizing: border-box;
+    width: 400px;
+    padding: 30px;
+    border: 1px solid black;
+    margin: 0 auto;
+    background-color: #3f3f3f;
+}
+
+body#authentication {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+
+ul.form-errors {
+    padding: 7px 0 7px 10px;
+    background-color: lightcoral;
+    color: white;
+    margin-bottom: 20px;
+    list-style-type: disc;
+    list-style-position: inside;
+}
+
+#uploadHeader {
+    margin: 1rem 0rem;
+}
+
+.auth-container form .input-container .error {
+    color: red;
+    font-size: 0.8rem;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+}
+
+.artist-container {
+    margin: 2rem 0rem;
+}
+
+.settings {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}

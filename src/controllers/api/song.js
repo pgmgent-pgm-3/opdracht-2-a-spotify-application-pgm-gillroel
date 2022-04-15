@@ -5,7 +5,10 @@ export const getSong = async (req, res, next) => {
     // get song repo
     const songRepository = getConnection().getRepository('Song');
 
-    res.status(200).json(await songRepository.find({ relations: ['artist'] }));
+    const { relations } = songRepository.metadata;
+    const relationnames = relations.map((m) => m.propertyName);
+    console.log(relationnames);
+    res.status(200).json(await songRepository.find({ relations: relationnames }));
   } catch (e) {
     next(e.message);
   }

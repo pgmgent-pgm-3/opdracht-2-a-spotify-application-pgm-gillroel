@@ -1,11 +1,10 @@
-import path from 'path';
-
 import sharp from 'sharp';
 import { v4 as uuidv4 } from 'uuid';
 import { PUBLIC_PATH } from '../consts.js';
 
 export const saveAvatar = async (req, res, next) => {
   // get the file out our request
+
 
   const { file } = req;
 

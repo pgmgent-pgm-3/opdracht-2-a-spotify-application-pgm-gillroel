@@ -1,7 +1,10 @@
 <div class="sideBar">
     <div class="settings">
         {{#ifEquals user.role.name "Admin"}}
-        <a href="http://localhost:3000/admin">Acounts beheren</a>
+        <a href="http://localhost:3000/admin">Beheren</a>
+        {{/ifEquals}}
+        {{#ifEquals user.role.name "Editor"}}
+        <a href="http://localhost:3000/editor">Beheren</a>
         {{/ifEquals}}
         <a href="http://localhost:3000/account">Acount beheren</a>
     </div>
@@ -10,7 +13,7 @@
         <h2>Your playlists</h2>
         <div class="playlist__name">
             {{#each playList}}
-            <a href="#">{{name}}</a>
+            <a href="http://localhost:3000/playlist?name={{name}}&id={{id}}">{{name}}</a>
             {{/each}}
         </div>
     </div>

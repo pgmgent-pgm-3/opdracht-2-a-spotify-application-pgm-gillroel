@@ -1,0 +1,20 @@
+<div class="container-right">
+    <div class="artist-container">
+        <h3>Artist</h3>
+        <ul>
+            {{#each artist}}
+            <li><a href="http://localhost:3000/artist?name={{name}}&id={{id}}">{{name}}</a></li>
+            {{/each}}
+        </ul>
+
+    </div>
+
+    <div class="song-container">
+        <h3>Song</h3>
+        <ul>
+            {{#each songs}}
+            <li>{{name}} by {{artist.name}}</li>
+            {{/each}}
+        </ul>
+    </div>
+</div>

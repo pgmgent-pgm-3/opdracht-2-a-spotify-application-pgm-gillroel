@@ -7,7 +7,7 @@ export const getPlaylist = async (req, res, next) => {
 
     res
       .status(200)
-      .json(await playlistRepository.find({ relations: ['user', 'songs'] }));
+      .json(await playlistRepository.find({ relations: ['songs'] }));
   } catch (e) {
     next(e.message);
   }
@@ -135,4 +135,8 @@ export const deletePlaylist = async (req, res, next) => {
   } catch (e) {
     next(e.message);
   }
+};
+
+export const postSongToPlaylist = async (req, res, next) => {
+  
 };

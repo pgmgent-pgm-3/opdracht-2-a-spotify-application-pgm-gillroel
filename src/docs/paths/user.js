@@ -2,19 +2,20 @@ import userResponse from '../responses/user.js';
 
 export default {
   '/api/user/{id}': {
-    summary: 'Gets a existing user',
-    description: 'Gets an existing users in database...',
     get: {
+      summary: 'Gets a existing user',
+      description: 'Gets an existing users in database...',
       tags: ['Users'],
       parameters: [
         {
           in: 'path',
-          name: ' id',
+          name: 'id',
           required: true,
           schema: {
             type: 'integer',
             minium: 1,
           },
+          
           description: 'The user id',
         },
       ],

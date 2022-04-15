@@ -84,3 +84,31 @@ export const deleteUser = async (req, res, next) => {
     next(e.message);
   }
 };
+
+export const updateUsers = async (req, res, next) => {
+  try {
+    // validate incoming id
+    if (!req.body.id)
+      throw new Error('Please provide an id for the user you want to update');
+
+    // get artist repo
+    const userRepository = getConnection().getRepository('User');
+
+    // vind de artiest met de juiste id
+    const user = await userRepository.findOne({
+      where: { id: req.body.id },
+    });
+
+    // de gegeven user bestaat niet
+    if (!user) throw new Error('the given user does not exist');
+
+    const updatedUser = { ...user, ...req.body };
+
+    // de user bewaren in de databank
+    await userRepository.save(updatedUser);
+
+    res.status(200).json({ status: `Update user with id: ${req.body.id}.` });
+  } catch (e) {
+    next(e.message);
+  }
+};

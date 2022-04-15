@@ -1,12 +1,16 @@
+import { getConnection } from 'typeorm';
+
 export const account = async (req, res) => {
-  const playList = [
-    {
-      name: 'party',
-    },
-    {
-      name: 'hardstyle',
-    },
-  ];
+  const playListRepository = getConnection().getRepository('Playlist');
+  const playList = await playListRepository.find({
+    relations: ['songs'],
+  });
+
+  const userRepository = getConnection().getRepository('User');
+  const currentUser = await userRepository.findOne({
+    where: { id: req.user.id },
+    relations: ['userMeta'],
+  });
 
   const inputs = [
     {
@@ -57,6 +61,11 @@ export const account = async (req, res) => {
   res.render('account', {
     playList,
     inputs,
+    currentUser,
     user: req.user,
   });
+};
+
+export const updateUser = async (req, res, next) => {
+  console.log(req.user);
 };

@@ -1,0 +1,41 @@
+<div class="container-right">
+
+    <div class="container-playlist info-container">
+        <h3>playlists</h3>
+        </div>
+
+
+
+
+    <div class="container-song info-container">
+        <h3>Song</h3>
+        <ul>
+            {{#each song}}
+
+            <li class="song-info info" data-id="{{id}}">
+                {{name}}
+                {{artist.name}}
+                <button class="btnchange--song" data-id="{{id}}"><i class="fa-solid fa-pen-to-square"></i></button>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+
+    <div class="album-container info-container">
+        <h3>Albums</h3>
+
+    </div>
+
+    <div class="artist-container info-container">
+        <h3>Artist</h3>
+        <ul>
+            {{#each artist}}
+            <li class="artist-info info" data-id="{{id}}">{{name}}
+            <button class="btnchange--artist" data-id="{{id}}"><i class="fa-solid fa-pen-to-square"></i></button>
+            </li>
+            {{/each}}
+        </ul>
+
+    </div>
+
+</div>

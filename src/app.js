@@ -16,6 +16,7 @@ import {
   getUser,
   getUserById,
   postUser,
+  updateUsers,
 } from './controllers/api/user.js';
 import {
   login,
@@ -54,11 +55,23 @@ import {
 import {
   deletePlaylist,
   getPlaylist,
+  getPlaylistById,
   postPlaylist,
+  postSongToPlaylist,
   updatePlaylist,
 } from './controllers/api/playlist.js';
-import { account } from './controllers/account.js';
-import { admin } from './controllers/admin.js';
+import { account, updateUser } from './controllers/account.js';
+import {
+  addAlbum,
+  addArtist,
+  addPlaylist,
+  addSong,
+  addSongToPlaylist,
+  admin,
+} from './controllers/admin.js';
+import { artist } from './controllers/artist.js';
+import { playlist } from './controllers/playlist.js';
+import { editor } from './controllers/editor.js';
 
 const app = express();
 app.use(express.static('public'));
@@ -81,10 +94,13 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(SOURCE_PATH, 'views'));
 
 // App Routing
-
 app.get('/', jwtAuth, home);
 app.get('/admin', jwtAuth, admin);
 app.get('/account', jwtAuth, account);
+app.get('/artist', jwtAuth, artist);
+app.get('/playlist', jwtAuth, playlist);
+app.get('/editor', jwtAuth, editor);
+
 app.get('/register', register);
 app.get('/login', login);
 app.post(
@@ -101,8 +117,8 @@ app.post('/logout', logout);
 app.get('/api/users', getUser);
 app.get('/api/user/:id', getUserById);
 app.post('/api/user', postUser);
+app.put('/api/user', updateUsers);
 app.delete('/api/user/:id', deleteUser);
-// app.post('/api/user', postUser);
 
 app.get('/api/roles', getRole);
 app.post('/api/role', postRole);
@@ -126,10 +142,18 @@ app.put('/api/artist', updateArtist);
 app.delete('/api/artist/:id', deleteArtist);
 
 app.get('/api/playlist', getPlaylist);
-app.get('/api/playlists/:id', getPlaylist);
+app.get('/api/playlists/:id', getPlaylistById);
 app.post('/api/playlist', postPlaylist);
 app.put('/api/playlists', updatePlaylist);
 app.delete('/api/playlists/:id', deletePlaylist);
+
+app.post('/addPlaylist', addPlaylist);
+app.post('/addSong', addSong);
+app.post('/addAlbum', addAlbum);
+app.put('/updateUser', updateUser);
+app.post('/api/playlists/addSong', postSongToPlaylist);
+app.post('/addSongToPlaylist', addSongToPlaylist);
+app.post('/addArtist', addArtist);
 
 // adding swagger documentation
 app.use(

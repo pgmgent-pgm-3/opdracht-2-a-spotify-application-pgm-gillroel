@@ -19,11 +19,18 @@ export default new EntitySchema({
     },
   },
   relations: {
+    playlist: {
+      target: 'Playlist',
+      type: 'many-to-many',
+      cascade: true,
+      joinTable: true,
+    },
     userMeta: {
       target: 'UserMeta',
       type: 'one-to-one',
       cascade: true,
       joinColumn: true,
+      onDelete: 'CASCADE',
     },
     role: {
       target: 'Role',
