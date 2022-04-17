@@ -60,7 +60,7 @@ import {
   postSongToPlaylist,
   updatePlaylist,
 } from './controllers/api/playlist.js';
-import { account, updateUser } from './controllers/account.js';
+import { account } from './controllers/account.js';
 import {
   addAlbum,
   addArtist,
@@ -150,7 +150,6 @@ app.delete('/api/playlists/:id', deletePlaylist);
 app.post('/addPlaylist', addPlaylist);
 app.post('/addSong', addSong);
 app.post('/addAlbum', addAlbum);
-app.put('/updateUser', updateUser);
 app.post('/api/playlists/addSong', postSongToPlaylist);
 app.post('/addSongToPlaylist', addSongToPlaylist);
 app.post('/addArtist', addArtist);

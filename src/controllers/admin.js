@@ -143,8 +143,6 @@ export const addSongToPlaylist = async (req, res, next) => {
       where: { id: req.body.song },
     });
 
-    console.log(playlist);
-
     playlist.songs.push(song);
 
     await playlistRepository.save(playlist);

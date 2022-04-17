@@ -16,7 +16,6 @@ export const home = async (req, res) => {
   const artist = await artistRepository.find({
     relations: ['albums', 'song'],
   });
-  console.log(artist);
 
   const songRepository = getConnection().getRepository('Song');
   const songs = await songRepository.find({ relations: ['artist'] });
