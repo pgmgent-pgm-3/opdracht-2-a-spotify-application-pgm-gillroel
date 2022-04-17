@@ -15,6 +15,19 @@ export default {
     description: 'Gets an existing albums in database...',
     get: {
       tags: ['Album'],
+      parameters: [
+        {
+          in: 'path',
+          name: 'id',
+          required: true,
+          schema: {
+            type: 'integer',
+            minium: 1,
+          },
+          description: 'The album id',
+        },
+      ],
+      responses: albumResponse,
     },
     delete: {
       tags: ['Album'],

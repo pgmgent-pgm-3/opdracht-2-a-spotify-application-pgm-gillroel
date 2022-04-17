@@ -22,9 +22,17 @@
       this.$btnUpdatePassword = document.querySelector('.change-password');
       this.$btnchangeSong = document.querySelectorAll('.btnchange--song');
       this.$btnchangeArtist = document.querySelectorAll('.btnchange--artist');
+      this.$btnPlaySound = document.querySelectorAll('.btn-sound');
     },
 
     eventListener() {
+      // play sound
+      this.$btnPlaySound.forEach(($button) => {
+        $button.addEventListener('click', () => {
+          const sound = new Audio('./sounds/Mart-Hoogkamer- Ik-Ga-Zwemmen.mp3');
+          sound.play();
+        });
+      });
       // function delete request
       async function deleteRequest(value, id) {
         await fetch(`http://localhost:3000/api/${value}/${id}`, {
@@ -147,7 +155,6 @@
             ev.target.parentNode.dataset.id ||
             ev.target.parentNode.parentNode.dataset.id ||
             ev.target.parentNode.parentNode.parentNode.dataset.id;
-          console.log(id);
 
           const update = window.prompt('Pas de artist aan:');
 
@@ -170,191 +177,6 @@
           }).then(() => location.reload());
         });
       });
-
-      // update firstname
-      // this.$btnUpdateFirstname.addEventListener('click', async (ev) => {
-      //   const id =
-      //     ev.target.dataset.id ||
-      //     ev.target.parentNode.dataset.id ||
-      //     ev.target.parentNode.parentNode.dataset.id ||
-      //     ev.target.parentNode.parentNode.parentNode.dataset.id;
-
-      //   const update = window.prompt('Pas je firstname aan:');
-
-      //   const response = await fetch(`http://localhost:3000/api/user/${id}`);
-      //   const user = await response.json();
-
-      //   const hashedPassword = bcrypt.hashSync(user.password, 12);
-      //   const idNumber = parseInt(id);
-      //   await fetch('http://localhost:3000/api/user', {
-      //     method: 'PUT',
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //     },
-      //     body: JSON.stringify({
-      //       id: idNumber,
-      //       email: user.email,
-      //       password: user.password,
-      //       userMeta: {
-      //         firstname: update,
-      //         lastname: user.userMeta.lastname,
-      //         username: user.userMeta.username,
-      //         avatar: user.userMeta.avatar,
-      //       },
-      //       role: {
-      //         id: user.role.id,
-      //         name: user.role.name,
-      //       },
-      //     }),
-      //   }).then(() => location.reload());
-      // });
-
-      // this.$btnUpdateLastname.addEventListener('click', async (ev) => {
-      //   const id =
-      //     ev.target.dataset.id ||
-      //     ev.target.parentNode.dataset.id ||
-      //     ev.target.parentNode.parentNode.dataset.id ||
-      //     ev.target.parentNode.parentNode.parentNode.dataset.id;
-
-      //   const update = window.prompt('Pas je lastname aan:');
-
-      //   const response = await fetch(`http://localhost:3000/api/user/${id}`);
-      //   const user = await response.json();
-
-      //   const idNumber = parseInt(id);
-      //   await fetch('http://localhost:3000/api/user', {
-      //     method: 'PUT',
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //     },
-      //     body: JSON.stringify({
-      //       id: idNumber,
-      //       email: user.email,
-      //       password: user.password,
-      //       userMeta: {
-      //         firstname: user.userMeta.firstname,
-      //         lastname: update,
-      //         username: user.userMeta.username,
-      //         avatar: user.userMeta.avatar,
-      //       },
-      //       role: {
-      //         id: user.role.id,
-      //         name: user.role.name,
-      //       },
-      //     }),
-      //   }).then(() => location.reload());
-      // });
-
-      // // update username
-      // this.$btnUpdateUsername.addEventListener('click', async (ev) => {
-      //   const id =
-      //     ev.target.dataset.id ||
-      //     ev.target.parentNode.dataset.id ||
-      //     ev.target.parentNode.parentNode.dataset.id ||
-      //     ev.target.parentNode.parentNode.parentNode.dataset.id;
-
-      //   const update = window.prompt('Pas je username aan:');
-
-      //   const response = await fetch(`http://localhost:3000/api/user/${id}`);
-      //   const user = await response.json();
-
-      //   const idNumber = parseInt(id);
-      //   await fetch('http://localhost:3000/api/user', {
-      //     method: 'PUT',
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //     },
-      //     body: JSON.stringify({
-      //       id: idNumber,
-      //       email: user.email,
-      //       password: user.password,
-      //       userMeta: {
-      //         firstname: user.userMeta.firstname,
-      //         lastname: user.userMeta.lastname,
-      //         username: update,
-      //         avatar: user.userMeta.avatar,
-      //       },
-      //       role: {
-      //         id: user.role.id,
-      //         name: user.role.name,
-      //       },
-      //     }),
-      //   }).then(() => location.reload());
-      // });
-
-      // // update email
-      // this.$btnUpdateEmail.addEventListener('click', async (ev) => {
-      //   const id =
-      //     ev.target.dataset.id ||
-      //     ev.target.parentNode.dataset.id ||
-      //     ev.target.parentNode.parentNode.dataset.id ||
-      //     ev.target.parentNode.parentNode.parentNode.dataset.id;
-
-      //   const update = window.prompt('Pas je email aan:');
-
-      //   const response = await fetch(`http://localhost:3000/api/user/${id}`);
-      //   const user = await response.json();
-
-      //   const idNumber = parseInt(id);
-      //   await fetch('http://localhost:3000/api/user', {
-      //     method: 'PUT',
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //     },
-      //     body: JSON.stringify({
-      //       id: idNumber,
-      //       email: update,
-      //       password: user.password,
-      //       userMeta: {
-      //         firstname: user.userMeta.firstname,
-      //         lastname: user.userMeta.lastname,
-      //         username: user.userMeta.username,
-      //         avatar: user.userMeta.avatar,
-      //       },
-      //       role: {
-      //         id: user.role.id,
-      //         name: user.role.name,
-      //       },
-      //     }),
-      //   }).then(() => location.reload());
-      // });
-
-      // // update password
-      // this.$btnUpdatePassword.addEventListener('click', async (ev) => {
-      //   const id =
-      //     ev.target.dataset.id ||
-      //     ev.target.parentNode.dataset.id ||
-      //     ev.target.parentNode.parentNode.dataset.id ||
-      //     ev.target.parentNode.parentNode.parentNode.dataset.id;
-
-      //   const update = window.prompt('Pas je password aan:');
-
-      //   const response = await fetch(`http://localhost:3000/api/user/${id}`);
-      //   const user = await response.json();
-
-      //   const idNumber = parseInt(id);
-      //   await fetch('http://localhost:3000/api/user', {
-      //     method: 'PUT',
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //     },
-      //     body: JSON.stringify({
-      //       id: idNumber,
-      //       email: user.email,
-      //       password: update,
-      //       userMeta: {
-      //         firstname: user.userMeta.firstname,
-      //         lastname: user.userMeta.lastname,
-      //         username: user.userMeta.username,
-      //         avatar: user.userMeta.avatar,
-      //       },
-      //       role: {
-      //         id: user.role.id,
-      //         name: user.role.name,
-      //       },
-      //     }),
-      //   }).then(() => location.reload());
-      // });
     },
 
     async song() {
@@ -410,7 +232,10 @@
 
       if (playlist.songs !== 0) {
         this.songsHtml = playlist.songs
-          .map((s) => `<li>${s.name}</li>`)
+          .map(
+            (s) =>
+              `<li>${s.name} <button class="btn-sound">Play sound</button></li></li>`
+          )
           .join('');
       } else {
         this.songHtml = 'Geen songs';
